@@ -1,0 +1,38 @@
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "base_keymap": "VSCode",
+  "minimap": {
+    "show": "auto"
+  },
+  "file_types": {},
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "context_servers": {
+    "sage-mcp": {
+      "source": "custom",
+      "enabled": true,
+      "command": "C:/Users/ee01287/Documents/Workspace/MCP/sage-mcp/.venv/Scripts/python.exe",
+      "args": [
+        "C:/Users/ee01287/Documents/Workspace/MCP/sage-mcp/server.py"
+      ],
+      "env": {
+        "CUSTOM_API_URL": "http://localhost:11434/v1",
+        "CUSTOM_API_KEY": "",
+        "CUSTOM_MODEL_NAME": "qwen2.5-coder:latest",
+        "DEFAULT_MODEL": "qwen2.5-coder:latest",
+        "FORCE_DEFAULT_USER_ID": "true",
+        "LOG_LEVEL": "INFO",
+        "PYTHONPATH": "C:/Users/ee01287/Documents/Workspace/MCP/sage-mcp",
+        "SKILL_RULES_PATH": "C:/Users/ee01287/Documents/Workspace/skill-rules.json"
+      }
+    }
+  }
+}

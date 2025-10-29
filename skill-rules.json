@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "description": "Auto-activation rules for Sage MCP tools based on context and keywords",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "tool": "memory",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["remember", "recall", "what did", "you said", "mentioned earlier", "context", "history", "previous"],
+        "file_patterns": [],
+        "auto_search_on_start": true
+      },
+      "actions": {
+        "search_memory": {
+          "when": "keywords_match",
+          "limit": 5,
+          "threshold": 0.5
+        },
+        "add_memory": {
+          "when": "task_complete",
+          "infer": true
+        }
+      },
+      "description": "Automatically search memory when user references past context, and save important information after task completion"
+    },
+    {
+      "tool": "tasks",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["task", "todo", "track", "next step", "what's next", "blocked", "dependency", "implement", "fix", "add feature"],
+        "file_patterns": ["**/tasks.json", "**/TODO.md"],
+        "project_detection": true
+      },
+      "actions": {
+        "list_active": {
+          "when": "project_start",
+          "include_blocked": true
+        },
+        "create_task": {
+          "when": "explicit_request",
+          "auto_dependencies": true
+        },
+        "suggest_next": {
+          "when": "task_complete",
+          "show_priorities": true
+        }
+      },
+      "description": "Track tasks automatically, suggest next steps, and maintain project progress"
+    },
+    {
+      "tool": "clink",
+      "trigger": "manual",
+      "conditions": {
+        "keywords": ["gemini", "search for", "look up", "latest", "current", "web search"],
+        "requires_web": true
+      },
+      "actions": {
+        "forward_to_gemini": {
+          "when": "web_search_needed",
+          "role": "default"
+        }
+      },
+      "description": "Forward web searches and real-time queries to Gemini CLI"
+    },
+    {
+      "tool": "analyze",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["analyze", "review", "check", "examine", "look at", "what does", "explain"],
+        "file_patterns": ["**/*.py", "**/*.ts", "**/*.js", "**/*.go", "**/*.rs"],
+        "file_count_threshold": 1
+      },
+      "actions": {
+        "analyze_files": {
+          "when": "files_mentioned",
+          "depth": "comprehensive"
+        }
+      },
+      "description": "Automatically analyze code files when referenced in conversation"
+    },
+    {
+      "tool": "codereview",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["review", "code review", "security", "vulnerabilities", "best practices", "issues"],
+        "file_patterns": ["**/*.py", "**/*.ts", "**/*.js", "**/*.go", "**/*.rs"],
+        "file_count_threshold": 1
+      },
+      "actions": {
+        "comprehensive_review": {
+          "when": "explicit_request",
+          "include_security": true
+        }
+      },
+      "description": "Perform comprehensive code review when requested"
+    },
+    {
+      "tool": "debug",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["error", "bug", "broken", "not working", "debug", "fix", "issue", "exception", "crash"],
+        "error_patterns": ["Traceback", "Error:", "Exception:", "failed", "undefined"],
+        "file_patterns": ["**/*.log", "**/*.py", "**/*.ts", "**/*.js"]
+      },
+      "actions": {
+        "diagnose": {
+          "when": "error_detected",
+          "root_cause_analysis": true
+        }
+      },
+      "description": "Automatically trigger debugging assistance when errors are detected"
+    },
+    {
+      "tool": "docs",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["documentation", "docs", "how to", "guide", "explain how", "document"],
+        "file_patterns": ["**/*.md", "**/README.md"],
+        "missing_docs": true
+      },
+      "actions": {
+        "search_docs": {
+          "when": "question_about_docs",
+          "limit": 5
+        },
+        "generate_docs": {
+          "when": "explicit_request",
+          "from_memory": true
+        }
+      },
+      "description": "Search and generate documentation from memory when needed"
+    },
+    {
+      "tool": "codebase",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["where is", "find", "search for", "locate", "which file", "codebase"],
+        "large_codebase": true,
+        "semantic_search": true
+      },
+      "actions": {
+        "semantic_search": {
+          "when": "searching_code",
+          "token_reduction": true,
+          "importance_filtering": true
+        }
+      },
+      "description": "Semantic codebase search with 60-80% token reduction"
+    },
+    {
+      "tool": "knowledge",
+      "trigger": "auto",
+      "conditions": {
+        "keywords": ["relationship", "entity", "pattern", "architecture", "structure", "how does", "connected"],
+        "graph_query": true
+      },
+      "actions": {
+        "query_graph": {
+          "when": "relationship_question",
+          "include_patterns": true
+        }
+      },
+      "description": "Query knowledge graph for entity relationships and patterns"
+    },
+    {
+      "tool": "testgen",
+      "trigger": "manual",
+      "conditions": {
+        "keywords": ["test", "tests", "testing", "unit test", "coverage"],
+        "file_patterns": ["**/*.py", "**/*.ts", "**/*.js"]
+      },
+      "actions": {
+        "generate_tests": {
+          "when": "explicit_request",
+          "comprehensive": true
+        }
+      },
+      "description": "Generate comprehensive tests when explicitly requested"
+    },
+    {
+      "tool": "refactor",
+      "trigger": "manual",
+      "conditions": {
+        "keywords": ["refactor", "improve", "optimize", "clean up", "simplify"],
+        "file_patterns": ["**/*.py", "**/*.ts", "**/*.js", "**/*.go"]
+      },
+      "actions": {
+        "analyze_refactoring": {
+          "when": "explicit_request",
+          "expert_validation": true
+        }
+      },
+      "description": "Refactoring analysis with expert validation"
+    },
+    {
+      "tool": "secaudit",
+      "trigger": "manual",
+      "conditions": {
+        "keywords": ["security", "audit", "vulnerabilities", "owasp", "secure"],
+        "file_patterns": ["**/*.py", "**/*.ts", "**/*.js"]
+      },
+      "actions": {
+        "security_audit": {
+          "when": "explicit_request",
+          "owasp_coverage": true
+        }
+      },
+      "description": "Comprehensive security audit with OWASP Top 10 coverage"
+    }
+  ],
+  "global_settings": {
+    "auto_memory_save": true,
+    "auto_memory_search_threshold": 0.5,
+    "auto_task_tracking": true,
+    "conversation_context_window": 150000,
+    "auto_context_reset": true,
+    "max_auto_activations_per_prompt": 3,
+    "priority_order": ["memory", "tasks", "debug", "analyze", "codebase"]
+  },
+  "workspace_config": {
+    "multi_project": true,
+    "project_folders": [
+      "MCP/sage-mcp",
+      "MCP/sql-context",
+      "whodb",
+      "Spectrometer_Issue",
+      "SSRS"
+    ],
+    "per_project_memory": false,
+    "shared_memory": true
+  }
+}
