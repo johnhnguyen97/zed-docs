@@ -1,0 +1,28 @@
+title: Zed + Sage MCP Documentation
+description: Complete configuration guide for Zed editor with Sage MCP auto-activation
+theme: jekyll-theme-cayman
+
+# Navigation
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Include files
+include:
+  - README.md
+  - INDEX.md
+  - CONFIGURATION_GUIDE.md
+  - AUTO_ACTIVATION_IMPLEMENTATION.md
+  - Work_flow.md
+  - ZED_HOOKS_SETUP.md
+  - CLAUDE.md
+  - WORKSPACE_README.md
