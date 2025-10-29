@@ -426,36 +426,6 @@ With this setup:
 
 ---
 
-## 📝 Credits
-
-**System built from:**
-- [Sage MCP](https://github.com/johnhnguyen97/sage-mcp) - Intelligent MCP server
-- [Work_flow.md](./Work_flow.md) - 6 months of real-world workflow refinement
-- [AUTO_ACTIVATION_IMPLEMENTATION.md](./AUTO_ACTIVATION_IMPLEMENTATION.md) - Implementation guide
-
 **Configuration date:** October 29, 2025
 **Sage MCP Version:** 1.0.0
 **Auto-Activation Status:** ✅ Enabled
-
----
-
-## 🤝 Contributing
-
-This is a personal configuration, but feel free to:
-- Fork and adapt for your workflow
-- Share improvements
-- Report issues
-- Suggest enhancements
-
----
-
-## 📄 License
-
-Configuration files and documentation: MIT License
-Sage MCP: See [sage-mcp repository](https://github.com/johnhnguyen97/sage-mcp)
-
----
-
-**Built with 🧠 by exploring the limits of AI-assisted development**
-
-*"Ask not what Claude can do for you, ask what context you can give to Claude" ~ Wise Dude*
