@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title }}</a></h1>
+
+        <p>{{ site.description }}</p>
+
+        <nav>
+          <h3>📚 Documentation</h3>
+          <ul>
+            <li><a href="{{ "/README" | relative_url }}">📖 README</a></li>
+            <li><a href="{{ "/INDEX" | relative_url }}">🗂️ Quick Index</a></li>
+            <li><a href="{{ "/CONFIGURATION_GUIDE" | relative_url }}">⚙️ Configuration Guide</a></li>
+          </ul>
+
+          <h3>🔧 Configuration</h3>
+          <ul>
+            <li><a href="{{ "/zed-settings.json" | relative_url }}">Zed Settings</a></li>
+            <li><a href="{{ "/skill-rules.json" | relative_url }}">Auto-Activation Rules</a></li>
+          </ul>
+
+          <h3>📘 Deep Dives</h3>
+          <ul>
+            <li><a href="{{ "/AUTO_ACTIVATION_IMPLEMENTATION" | relative_url }}">Auto-Activation</a></li>
+            <li><a href="{{ "/Work_flow" | relative_url }}">Workflow Guide</a></li>
+            <li><a href="{{ "/ZED_HOOKS_SETUP" | relative_url }}">Hooks Setup</a></li>
+          </ul>
+
+          <h3>🔗 Links</h3>
+          <ul>
+            <li><a href="{{ site.github.repository_url }}" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://github.com/johnhnguyen97/sage-mcp" target="_blank">Sage MCP</a></li>
+            <li><a href="https://zed.dev/" target="_blank">Zed Editor</a></li>
+          </ul>
+        </nav>
+
+        <p><small>Last updated: October 29, 2025</small></p>
+      </header>
+
+      <section>
+        {{ content }}
+
+        <footer>
+          <p><small>Zed + Sage MCP Documentation</small></p>
+        </footer>
+      </section>
+    </div>
+
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>
